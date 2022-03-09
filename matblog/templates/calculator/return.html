@@ -1,0 +1,238 @@
+{%extends 'calculator/base.html' %}
+
+{% block head %}
+
+{%endblock%}
+{% block body %}
+
+<header>
+    <div class="container">
+        <img src="{{url_for('static', filename='images/Screenshot 2021-03-28 064126.png')}}" alt="logo" class="logo">
+        
+        <nav>
+            <ul>
+                <li><a href="/Add">Addition</a></li>
+                <li><a href="/sub">Subtraction</a></li>
+                <li><a href="/mul">multiplication</a></li>
+                <li><a href="/linear_equations">Linear Equations</a></li>
+                <li><a href="/trace_mat">trace</a></li>
+                <li><a href="/determnt">determinant</a></li>
+                <li><a href="/eigen_vals">eigen values</a></li>
+                <li><a href="/power_mat">Power of matrix</a></li>
+                <li><a href="/inverse_mat">Inverse of Matrix</a></li>
+                <li><a href="/rank_mat">Rank of Matrix</a></li>
+                <li><a href="/">Mat Blog</a></li>
+            </ul>
+        </nav>
+    
+    
+    </div>
+</header>
+
+
+{%macro printmat(mat) -%}
+    <table class="table table-hover table-borderless shadow p-3 mb-5 bg-body rounded-3" style="border-radius: 15px;">
+        {% for row in mat %}
+        <tr>
+            {% for ele in row %}
+                <td scope="row">{{ele}}</td>
+            {%endfor%}
+        </tr>
+        {%endfor%}
+    </table>
+{%endmacro%}
+
+
+{%if op == 'add'%}
+<div class="container">
+    <h4>Addition :</h4>
+    <br/><br/>
+    <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+        <div class="col" style="flex: 1; border-radius:10px">
+            {{printmat(mat1)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%">
+            +
+        </div>
+        <div class="col" style="flex:1;">
+        {{printmat(mat2)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%">
+            =
+        </div>
+        <div class="col" style="flex:1;">
+            <div class="table-responsive">
+                {{printmat(result)}}
+            </div>
+        </div>
+    </div>
+</div>
+    
+{%elif op == 'sub' %}
+<div class="container">
+    <h4>Subtraction :</h4>
+    <br/><br/>
+    <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+        <div class="col" style="flex: 1; border-radius:10px">
+            {{printmat(mat1)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%">
+            -
+        </div>
+        <div class="col" style="flex:1;">
+        {{printmat(mat2)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%">
+            =
+        </div>
+        <div class="col" style="flex:1;">
+            <div class="table-responsive">
+                {{printmat(result)}}
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+{%elif op == 'mul' %}
+<div class="container">
+    <h4>Multiplication :</h4>
+    <br/><br/>
+    <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+        <div class="col" style="flex: 1; border-radius:10px">
+            {{printmat(mat1)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%">
+            X
+        </div>
+        <div class="col" style="flex:1;">
+        {{printmat(mat2)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%">
+            =
+        </div>
+        <div class="col" style="flex:1;">
+            <div class="table-responsive">
+                {{printmat(result)}}
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{%elif op == 'trace' %}
+    <div class="container">
+        <h4>Trace :</h4>
+        <br/><br/>
+        <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+            <div class="col" style="flex: 1; border-radius:10px">
+                {{printmat(mat)}}
+            </div>
+            <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%; justify-content: center;">
+                =
+            </div>
+            <div class="col" style="flex:1;display:inline-block; margin-top:12.5%; justify-content: center;">
+                <div class="table-responsive">
+                    {{trace}}
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+{% elif op == 'determnt' %}
+    <div class="container">
+        <h4>Determinant :</h4>
+        <br/><br/>
+        <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+            <div class="col" style="flex: 1; border-radius:10px">
+                {{printmat(mat)}}
+            </div>
+            <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%; justify-content: center;">
+                =
+            </div>
+            <div class="col" style="flex:1;display:inline-block; margin-top:12.5%; justify-content: center;">
+                <div class="table-responsive">
+                    {{det}}
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+{%elif op == 'inversion' %}
+<div class="container">
+    <h4>Inverted Matrix :</h4>
+    <br/><br/>
+    <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+        <div class="col" style="flex: 1; border-radius:10px">
+            {{printmat(mat)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%; justify-content: center;">
+            =
+        </div>
+        <div class="col" style="flex:1;">               
+            <div class="table-responsive">
+                {{printmat(mat)}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif op == 'eigen_vals' %}
+    <h4>Inverted Matrix :</h4>
+    {% if eigen_vals %}
+    <br/><br/>
+    <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+        <div class="col" style="flex: 1; border-radius:10px">
+            {{printmat(mat)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%; justify-content: center;">
+            =
+        </div>
+        
+        <div class="col" style="flex:1;">               
+            <div class="table-responsive">
+                {{printmat(eigen_vals)}}
+            </div>
+    </div>
+    {% else %}
+        <div class="col" style="flex:1;display:inline-block; justify-content: center;">
+
+                <h4>The matrix does not have any Eigen Values!!<h4>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+
+{% elif op == 'rank_mat' %}
+<div class="container">
+    <h4>Determinant :</h4>
+    <br/><br/>
+    <div class="row" style="padding:10px; display:flex; width:fit-content; flex-direction:row;">
+        <div class="col" style="flex: 1; border-radius:10px">
+            {{printmat(mat)}}
+        </div>
+        <div class="col" style="flex: 1; width:1em; display:inline-block; margin-top:12.5%; justify-content: center;">
+            =
+        </div>
+        <div class="col" style="flex:1;display:inline-block; margin-top:12.5%; justify-content: center;">
+            <div class="table-responsive">
+                {{rank}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif op == 'power_mat' %}
+    {{printmat(mat)}}
+    <h6>{{power}}</h6>
+    {{printmat(power_mat)}}
+
+{% elif op == 'linear_eq' %}
+    {{printmat(a)}}
+    {{printmat(b)}}
+    {{printmat(solution)}}
+{%endif%}
+
+{%endblock%}

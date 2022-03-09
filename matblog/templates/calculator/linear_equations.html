@@ -1,0 +1,83 @@
+{% extends 'calculator/base.html' %}
+
+{% block head %}
+<title>One Matrix rules them all</title>
+{% endblock %}
+
+{% block body %}
+
+
+<header>
+    <div class="container">
+        <img src="{{url_for('static', filename='images/Screenshot 2021-03-28 064126.png')}}" alt="logo" class="logo">
+        
+        <nav>
+            <ul>
+                <li><a href="/Add">Addition</a></li>
+                <li><a href="/sub">Subtraction</a></li>
+                <li><a href="/mul">multiplication</a></li>
+                <li><a href="/trace_mat">trace</a></li>
+                <li><a href="/determnt">determinant</a></li>
+                <li><a href="/eigen_vals">eigen values</a></li>
+                <li><a href="/power_mat">Power of matrix</a></li>
+                <li><a href="/inverse_mat">Inverse of Matrix</a></li>
+                <li><a href="/rank_mat">Rank of Matrix</a></li>
+                <li><a href="/">Mat BLog</a></li>
+            </ul>
+        </nav>
+    
+    
+    </div>
+</header>
+
+<br/>
+
+<form class="form-group form-outline shadow p-3 mb-5 rounded-3" action="" method="post" style="width: 80%; margin-left:10%">
+    <h6>Enter the number of variables:</h6>
+    <input class="form-control" type="number" name="var_num" id="var_num"/>
+    <h6>Enter number of equations:</h6>
+    <input class="form-control" type="number" name="num_equations" id="num_equations"/>
+    <br/>
+    <input class="btn btn-primary" type="submit"/>
+</form>
+
+<div style="display: flex; justify-self: center;">
+    <form class="" action="" method="post" style="width: 80%; margin-left:10%;justify-content: center;">
+        <input type="hidden" name="var_n" id="var_n" value="{{var_num}}"/>
+        <input type="hidden" name="num_eq" id="num_eq" value="{{num_equations}}"/>
+        
+        <h6>Enter matrix A:</h6>
+        <div class="row" style="padding: 10px; display:flex; width:fit-content; flex-direction: row; justify-content:center;">
+            <div class="shadow" style="display: inline-block; flex:1; border-radius:15px;">
+                <div style="margin-left:10px; margin-right:10px; margin-top:10px;">
+                    {%for row in range(num_equations)%}
+                    <div class="flex-container">    
+                        {%for column in range(var_num)%}
+                        <div style="padding: 1px;">
+                            <input class="input" type="number" name="a[]" id="a[]"/>
+                        </div>
+                        {%endfor%}
+                    </div>
+                        <br/>
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="col" style=" position:relative;d left:5%;">
+                <h6>Enter matrix b:</h6>
+            </div>
+                <br/>
+            <div class="shadow" style="display:inline-block; flex:1; border-radius: 15px;">
+                <div style="margin-left:10px; margin-right: 10px; margin-top: 10px;">
+                {%for row in range(num_equations)%}
+                <div style="padding: 1px;">    
+                    <input class="input" type="number" name="b[]" id="b[]"/>
+                </div>    
+                    <br/>
+                {%endfor%}
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" style="display: inline-block; padding-inline-end: 10px;margin-top:2%"/>
+        </div>
+    </form>
+</div>
+{%endblock%}

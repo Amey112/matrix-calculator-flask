@@ -1,0 +1,57 @@
+{% extends 'calculator/base.html' %}
+{% block head %}
+<title>Matrix Playground</title>
+{% endblock %}
+
+{% block body %}
+<h1>Welcome!!</h1>
+<p>Maths is fun but calculating matrices get boaring, no worries the Matrix calculator lets you do all sorts of matrix calculation with mutiple dimensions: </p>
+<div id="btns" class="d-grid gap-2 btn-group-vertical shadow-sm p-3 mb-5 bg-body rounded justify-content-center dark
+" role="group" aria-label="Basic example" style="flex: 1">
+    <a href="/Add">
+        <button type="button" class="btn btn-primary">Matrix Addition</button>
+    </a>
+
+    <a href="/sub">
+        <button type="button" class="btn btn-primary">Matrix Subtraction</button>    
+    </a>
+    
+    <a href="/mul">
+        <button type="button" class="btn btn-primary">Matrix Multiplication</button>
+    </a>
+    
+    
+    <a href="/linear_equations">
+         <button type="button" class="btn btn-primary">Solve Linear Equations in Matrix Form</button>
+    </a>
+    
+    
+    <a href="/trace_mat">
+        <button type="button" class="btn btn-primary">Trace of Matrix</button>
+    </a>
+    <a href="/determnt">
+        <button type="button" class="btn btn-primary">Matrix Determinant</button>
+    </a>
+    <a href="/inverse_mat">
+        <button type="button" class="btn btn-primary">Matrix Inversion</button>
+    </a>
+    <a href="/eigen_vals">
+        <button type="button" class="btn btn-primary">Matrix Eigen Values</button>
+    </a>
+    <a href="/rank_mat">
+        <button type="button" class="btn btn-primary">Rank of Matrix</button>
+    </a>
+    <a href="/power_mat">
+        <button type="button" class="btn btn-primary">Raise power of matrix</button>
+        </a>
+
+</div>
+
+<style>
+
+    #btns{
+        background-color: grey;
+    }
+</style>
+
+{% endblock %}
